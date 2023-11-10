@@ -73,7 +73,7 @@ namespace MusicCatalog
                 case "Песни":
                     var result5 = new List<Singer>();
                     
-                    if (comboBox2.SelectedItem == "Все")
+                    if (comboBox2.SelectedItem == "Название")
                     {
                         result5 = Singers
                         .Select(singer => new Singer
@@ -86,7 +86,7 @@ namespace MusicCatalog
                                 Songs = album.Songs.Where(song => song.Name.ToLower().Contains(search.ToLower())).ToList()
                             }).Where(album => album.Songs.Any()).ToList()
                         })
-                        .Where(singer => singer.Albums.Any()) // Оставляем только тех исполнителей, у которых есть подходящие альбомы
+                        .Where(singer => singer.Albums.Any())
                         .ToList();
                     }
 
@@ -103,7 +103,7 @@ namespace MusicCatalog
                                 Songs = album.Songs.Where(song => song.Genre.ToLower().Contains(search.ToLower())).ToList()
                             }).Where(album => album.Songs.Any()).ToList()
                         })
-                        .Where(singer => singer.Albums.Any()) // Оставляем только тех исполнителей, у которых есть подходящие альбомы
+                        .Where(singer => singer.Albums.Any())
                         .ToList();
                     }
 
@@ -115,7 +115,7 @@ namespace MusicCatalog
                             Name = singer.Name,
                             Albums = singer.Albums.Where(album => album.Year.ToString().Contains(year.ToString())).ToList()
                         })
-                        .Where(singer => singer.Albums.Any()) // Оставляем только тех исполнителей, у которых есть подходящие альбомы
+                        .Where(singer => singer.Albums.Any())
                         .ToList();
                     }
 
@@ -179,6 +179,7 @@ namespace MusicCatalog
                     }
                     return;
                 }
+               
                 int rowIdx = 0;
                 for (int i = 0; i < singers.Count; i++)
                 {
